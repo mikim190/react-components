@@ -56,31 +56,76 @@ clearInterval// TODO
 
 //-------ES6---------
 // var listOfItems = ['Kale','Romaine'];
-class GroceryListItem extends React.Component {
+// class GroceryListItem extends React.Component {
 
-    constructor(props) {
-      // Equivalent to ES5's React.Component.call(this, props)
-      super(props);
+//     constructor(props) {
+//       // Equivalent to ES5's React.Component.call(this, props)
+//       super(props);
       
       
-    }
+//     }
 
-    render() {
-      return (
-        <li>{this.props.list}</li>
-      );
-    } 
-  }
+//     render() {
+//       return (
+//         <li>{this.props.list}</li>
+//       );
+//     } 
+//   }
   
+//   var GroceryList = (props) => (
+//       <ul>
+//           {props.lists.map(list => 
+//           <GroceryListItem list={list}/>
+//         )}
+//       </ul>
+//     );
+
+  
+//   ReactDOM.render(<GroceryList lists={['Milk','Berry','Apple']}/>, document.getElementById("app"));
+
+  //----STATE-----
+  class GroceryListItem extends React.Component {
+    constructor(props) {
+      super(props);
+  
+      // `state` is just an object literal
+      this.state = {
+        done: false
+      };
+
+    }
+  
+    // When a list item is clicked, we will toggle the `done`
+    // boolean, and our component's `render` method will run again
+    onListItemClick() {
+      this.setState({
+        done: !this.state.done
+      });
+    }
+  
+    render() {
+      // Making the style conditional on our `state` lets us 
+      // update it based on user interactions.
+      var style = {
+          
+        textDecoration: this.state.done ? 'underline': 'none'
+      };
+  
+      // You can pass inline styles using React's `style` attribute to any component
+      // snake-cased css properties become camelCased this this object
+      return (
+        <li style={style} onMouseOver={this.onListItemClick.bind(this)}>{this.props.list}</li>
+      );
+    }
+  }
+
   var GroceryList = (props) => (
-      <ul>
-          {props.lists.map(list => 
-          <GroceryListItem list={list}/>
-        )}
-      </ul>
+        <ul>
+            {props.lists.map(list => 
+            <GroceryListItem list={list}/>
+            )}
+        </ul>
     );
 
-  
+
   ReactDOM.render(<GroceryList lists={['Milk','Berry','Apple']}/>, document.getElementById("app"));
-
-
