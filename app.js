@@ -23,22 +23,34 @@ clearInterval// TODO
 
 //-------------
 // Create a reusable GroceryListItem component
-var GroceryListItem = (props) => (
+var GroceryListItem = (props) => {
+
+    var onListItemClick = (event) => {
+        alert('Item got clicked!'); //click on first <li> will alert this message
+    };
+
+    return (
     <ul>
-        <li>{props.lists[0]}</li>
+        <li onClick={onListItemClick}>{props.lists[0]}</li>
         <li>{props.lists[1]}</li>
+        <li>{props.lists[2]}</li>
     </ul>
-);
+    );
+}
 
 var GroceryList = () => (
     <div>
         <h3>Reusable React components</h3>
-        <GroceryListItem lists={['Kale', 'Romaine']}/>
+        <GroceryListItem lists={['Kale', 'Romaine','Carrot']}/> 
+        
     </div>
 );
 
 ReactDOM.render(<GroceryList/>, document.getElementById('app'));
 
+
+//JSX version for React
+//new GroceryListItem(var list =['Kale','Romaine'])
 // Refactor GroceryList to dynamically render an array of groceryItems,
 // utilizing your new GroceryListItem component
 
