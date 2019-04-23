@@ -108,7 +108,7 @@ clearInterval// TODO
       // update it based on user interactions.
       var style = {
           
-        textDecoration: this.state.done ? 'underline': 'none'
+        fontWeight: this.state.done ? 'bold': 'normal'
       };
   
       // You can pass inline styles using React's `style` attribute to any component
